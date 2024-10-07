@@ -1,13 +1,14 @@
 /* Routes för registrering och inloggning */
 
-const express = require("express");
-const router = express.Router();
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
-const User = require("../models/user"); 
+const express = require("express"); // Inkluderar express
+const router = express.Router(); // Inkluderar Router-objekt
+const jwt = require("jsonwebtoken"); // Inkluderar jsonwebtoken
+require("dotenv").config(); // Inklderar dotenv
+const User = require("../models/user"); // inkluderar user-model
+const { authenticateToken } = require("../functions/validateAuth.js"); // Inkluderar autentiseringsfuntion
 
 // Lägg till ny användare
-router.post("/register", async (req, res) => {
+router.post("/register", authenticateToken, async (req, res) => {
     try {
         const { username, password } = req.body;
 
@@ -70,4 +71,4 @@ router.post("/login", async (req, res) => {
     }
 });
 
-module.exports = router;
+module.exports = router; // Exporterar router-objektet

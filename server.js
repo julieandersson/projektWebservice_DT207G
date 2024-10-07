@@ -14,8 +14,10 @@ const port = process.env.PORT || 3000;
 
 // Inkluderar och använder exporterade routes
 const authRoutes = require("./routes/authRoutes"); // för admin-användare
+const menuRoutes = require("./routes/menuRoutes"); // för restaurangens meny
 
 app.use("/api", authRoutes);
+app.use("/api/cuisine", menuRoutes);
 
 // Ansluter till MongoDB med URL från env-filen
 mongoose.set("strictQuery", false); // Använder inte strikt sökning

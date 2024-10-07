@@ -12,6 +12,11 @@ require("dotenv").config(); // Inkluderar env-fil
 app.use(express.json()); // Middleware för konvertering till json
 const port = process.env.PORT || 3000;
 
+// Inkluderar och använder exporterade routes
+const authRoutes = require("./routes/authRoutes"); // för admin-användare
+
+app.use("/api", authRoutes);
+
 // Ansluter till MongoDB med URL från env-filen
 mongoose.set("strictQuery", false); // Använder inte strikt sökning
 mongoose.connect(process.env.DATABASE).then(() => {

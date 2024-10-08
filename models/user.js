@@ -81,4 +81,4 @@ userSchema.statics.login = async function (username, password) {
 
 // Skapar en user-modell baserad på schemat, lägger till i en collection "adminuser"
 const User = mongoose.model("User", userSchema, "adminuser"); 
-module.exports = User; // exportera User
+module.exports = User; // exporterar User

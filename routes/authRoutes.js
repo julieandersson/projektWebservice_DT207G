@@ -5,10 +5,9 @@ const router = express.Router(); // Inkluderar Router-objekt
 const jwt = require("jsonwebtoken"); // Inkluderar jsonwebtoken
 require("dotenv").config(); // Inklderar dotenv
 const User = require("../models/user"); // inkluderar user-model
-const { authenticateToken } = require("../functions/validateAuth.js"); // Inkluderar autentiseringsfuntion
 
 // Lägg till ny användare
-router.post("/register", authenticateToken, async (req, res) => {
+router.post("/register", async (req, res) => {
     try {
         const { username, password } = req.body;
 

@@ -23,16 +23,18 @@ router.get("/", async (req, res) => {
 // POST-anrop för att lägga till en recension
 router.post("/", async (req, res) => {
     try {
-        // Validera inkommande data
-        const { name, comment, rating } = req.body;
-        if (!name || !comment || !rating) {
-            return res.status(400).json({ error: "Vänligen ange ditt namn, betyg och kommentar." });
-        }
+        // Skapa ny recension med data från request body
+        const newReview = new Review(req.body);
+        await newReview.save();
 
-        // Skapa ny recension med data från body
-        const newReview = await Review.create({ name, comment, rating });
+        // Skicka svar till användaren
         res.status(201).json({ message: "Din recension har lagts till", review: newReview });
     } catch (error) {
+        if (error.name === 'ValidationError') {
+            // Om det är ett valideringsfel, returnera specifikt felmeddelande
+            const messages = Object.values(error.errors).map(err => err.message);
+            return res.status(400).json({ error: messages.join(', ') });
+        }
         console.error("Något gick fel vid tillägg av recension: ", error);
         return res.status(500).json({ error: "Serverfel, kunde inte lägga till recension" });
     }

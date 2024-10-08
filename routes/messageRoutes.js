@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
         const newMessage = await Message.create({ name, email, message });
 
         // Skicka auto-svar till användaren
-        res.status(201).json({ message: "Ditt meddelande har mottagits. Vi återkommer så snart som möjligt!", newMessage });
+        res.status(201).json({ message: "Tack för ditt meddelande! Vi återkommer så snart som möjligt.", newMessage });
     } catch (error) {
         console.error("Något gick fel vid skickandet av meddelandet: ", error);
         res.status(500).json({ error: "Ett fel uppstod, vänligen försök igen senare." });

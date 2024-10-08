@@ -26,6 +26,11 @@ router.post('/', authenticateToken, async (req, res) => {
         await newCuisine.save(); // Spara den nya maträtten i databasen
         res.status(201).json({ message: "Ny maträtt tillagd på menyn." });
     } catch (error) {
+        if (error.name === 'ValidationError') {
+            // Om det är ett valideringsfel, returnera specifikt felmeddelande
+            const messages = Object.values(error.errors).map(err => err.message);
+            return res.status(400).json({ error: messages.join(', ') });
+        }
         console.error("Fel vid tillägg av ny maträtt: ", error);
         res.status(500).json({ error: "Serverfel, kunde inte lägga till maträtten." });
     }

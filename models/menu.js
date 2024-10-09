@@ -21,7 +21,7 @@ const menuSchema = new mongoose.Schema ({
     category: {
         type: String,
         required: [true, "Du måste ange vilken kategori maträtten tillhör."],
-        enum: ['Förrätt', 'Nigiri', 'Maki', 'Varma rätter', 'Dessert', 'Cocktails']
+        enum: ['Förrätt', 'Nigiri', 'Maki', 'Varma rätter', 'Pokebowl', 'Dessert', 'Cocktails']
     }
 });
 

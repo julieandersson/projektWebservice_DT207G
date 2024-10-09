@@ -2,6 +2,9 @@
 ## Steg 1: Webbtjänst
 Detta repository innehåller källkoden för en webbtjänst som är byggd med NodeJS och Express. Webbtjänsten hanterar meny, recensioner, kontaktmeddelanden, bordsbokningar, kontoregistrering och autentisering för en restaurang. Samtlig data lagras i en MongoDB Atlas databas och använder JWT-baserad autentisering för skyddade routes. 
 
+## Länk
+Webbtjänsten är publicerad via Render: https://projektwebservice-dt207g.onrender.com/
+
 ## Installation och databas:
 För att köra detta projekt krävs det att Node.js och npm är installerat på din dator samt att du har tillgång till en MongoDB-databas antingen lokalt eller via en molntjänst. I detta projekt används MongoDB Atlas. 
 Följ denna steg för att sätta upp projektet lokalt: 

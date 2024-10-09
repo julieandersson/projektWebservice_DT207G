@@ -1,6 +1,6 @@
 # Moment 5 PROJEKT - DT207G - Backend-baserad webbutveckling
 ## Steg 1: Webbtjänst
-Detta repository innehåller källkoden för en webbtjänst som är byggd med NodeJS och Express. Webbtjänsten hanterar meny, recensioner, kontaktmeddelanden, bordsbokningar och autentisering för en restaurang. Samtlig data lagras i en MongoDB Atlas databas och använder JWT-baserad autentisering för skyddade routes. 
+Detta repository innehåller källkoden för en webbtjänst som är byggd med NodeJS och Express. Webbtjänsten hanterar meny, recensioner, kontaktmeddelanden, bordsbokningar, kontoregistrering och autentisering för en restaurang. Samtlig data lagras i en MongoDB Atlas databas och använder JWT-baserad autentisering för skyddade routes. 
 
 ## Installation och databas:
 För att köra detta projekt krävs det att Node.js och npm är installerat på din dator samt att du har tillgång till en MongoDB-databas antingen lokalt eller via en molntjänst. I detta projekt används MongoDB Atlas. 
@@ -67,6 +67,7 @@ Nedan finns beskrivning på hur man når webbtjänsten olika endpoints:
 | Metod | Ändpunkt                   | Autentisering | Beskrivning                                        |
 |-------|----------------------------|---------------|----------------------------------------------------|
 | POST  | `/api/login`               | Nej           | Autentiserar en användare och returnerar JWT.      |                            |
+| POST  | `/api/register`               | Ja           | Registrerar nytt inlogg (endast för admin i inloggat läge)      |                            |
 | GET   | `/api/messages`            | Ja            | Hämtar alla meddelanden (inloggat läge).                    |
 | PUT   | `/api/messages/:id`            | Ja            | Besvarar ett meddelande (endast admin).                    |
 | POST  | `/api/messages`            | Nej           | Skickar ett nytt kontaktmeddelande via webbplatsen.                |               |
@@ -82,8 +83,8 @@ Nedan finns beskrivning på hur man når webbtjänsten olika endpoints:
 Exempel på POST-data för **/api/login**:
 ```bash
 {
-  "username": "Julie",
-  "password": "lösenord"
+  "username": "admin",
+  "password": "password"
 }
 ```
 När du loggar in med POST /api/login, får du en JWT som svar. Denna JWT måste skickas i Authorization-headern för att få åtkomst till skyddade resurser, exempelvis:
